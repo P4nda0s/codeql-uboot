@@ -20,7 +20,9 @@ class Config extends TaintTracking::Configuration {
 
   override predicate isSink(DataFlow::Node sink) {
     // sink should be the size argument of calls to memcpy
-    sink.asParameter().getFunction().getName() = "memcpy"
+    //sink.asParameter().getFunction().getName() = "memcpy"
+    (exists(FunctionCall call | sink.asExpr() = call.getArgument(2) and
+    call.getTarget().getName() = "memcpy"))
   }
 }
 
