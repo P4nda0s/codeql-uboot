@@ -4,7 +4,7 @@ class NetworkByteSwap extends Expr {
   NetworkByteSwap () {
     exists( MacroInvocation mi |
         this = mi.getExpr() and mi.getMacro().getName() in ["ntohs", "ntohl", "ntohll"]
-    ) 
+    )
   }
 }
 
